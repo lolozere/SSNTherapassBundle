@@ -18,7 +18,7 @@ class DefaultController extends OxygenController {
 	 * 
 	 */
 	public function indexAction() {
-		return $this->render('SSNTherapassBundle:Default:home.html.twig');
+		return $this->render('SSNTherapassBundle:Default:home2.html.twig');
 	}
 	
 }
