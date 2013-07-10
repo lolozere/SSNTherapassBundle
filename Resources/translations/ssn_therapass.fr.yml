@@ -1,0 +1,32 @@
+salon:
+    name: Salon Santé Nature
+ 
+home:
+    header:
+        title: Vos soins sur le Salon
+        command: Commander un pass »
+        book: Réservez vos soins »
+        introduction: Comme chaque année, le salon Santé Nature vous propose des soins sur le pôle thérapeute grâce au Pass-Bien-être !
+    cmdpass:
+        title: Obtenir un Pass
+        content: Munissez-vous de votre ticket et préparez votre planning de soins 
+        btn: Réservez vos soins »
+    book:
+        title: Utiliser son Pass
+        content: Réservez votre Pass Bien-être directement sur le site du Salon Santé Nature grâce à notre partenaire Weezevent
+        btn: Commandez votre Pass »
+   
+layout:
+    title: Réservation soins
+
+footer:
+    administration: Administration
+
+menu:
+    accueil: Accueil
+    booking: Reservations
+    booking: Reservations
+    salon:
+        name: Le Salon Santé Nature
+        name: Découvrir le salon
+        

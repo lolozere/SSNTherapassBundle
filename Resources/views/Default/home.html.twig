@@ -1,0 +1,22 @@
+{% extends 'SSNTherapassBundle::layout.html.twig' %}
+
+{% block main_content %}
+<div class="hero-unit">
+	<h1>{{ 'home.header.title'|trans({}, 'ssn_therapass') }}</h1>
+	<p>
+		{{ 'home.header.introduction'|trans({}, 'ssn_therapass') }}
+	</p>
+</div>
+<div class="row-fluid">
+	<div class="span6">
+		<h2>{{ 'home.book.title'|trans({}, 'ssn_therapass') }}</h2>
+		<p>{{ 'home.book.content'|trans({}, 'ssn_therapass') }}</p>
+		<p><a class="btn" href="#">{{ 'home.book.btn'|trans({}, 'ssn_therapass') }}</a></p>
+	</div><!--/span-->
+	<div class="span6">
+		<h2>{{ 'home.cmdpass.title'|trans({}, 'ssn_therapass') }}</h2>
+		<p>{{ 'home.cmdpass.content'|trans({}, 'ssn_therapass') }}</p>
+		<p><a class="btn" href="{{ book_pass_url }}">{{ 'home.cmdpass.btn'|trans({}, 'ssn_therapass') }}</a></p>
+	</div><!--/span-->
+</div><!--/row-->
+{% endblock %}
