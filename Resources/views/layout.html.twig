@@ -52,9 +52,13 @@
 		    		<div class="navbar-inner">
 					    <ul class="nav">
 					    	{% block navigation_links %}
+					    	{% if is_admin %}
+					    	<li><a href="{{ path('ssn_therapass_admin_home') }}">Tableau de bord</a></li>
+							<li><a href="{{ path('logout') }}">Se déconnecter</a></li>
+							{% else %}
 						    <li class="active"><a href="{{ path('ssn_therapass_home') }}">{{ 'menu.accueil'|trans({}, 'ssn_therapass') }}</a></li>
-						    {% if is_admin %}<li><a href="{{ path('ssn_therapass_admin_home') }}">Administration</a></li>
-						    {% else %}<li><a href="#">{{ 'menu.booking'|trans({}, 'ssn_therapass') }}</a></li>{% endif %}
+						    <li><a href="#">{{ 'menu.booking'|trans({}, 'ssn_therapass') }}</a></li>
+						    {% endif %}
 						    {% endblock %}
 					    </ul>
 		    		</div>
@@ -64,8 +68,16 @@
 		<div class="row-fluid">
 			<div class="span10 offset1">
 				<div class="row-fluid">
-					{% block admin_menu %}{% endblock %}
-					{% block ssn_therapass_content %}{% endblock %}
+					{% if is_admin %}
+					<div class="span3">{% block ssn_therapass_admin_menu %}{{ render(controller('SSNTherapassBundle:Admin:menu', {})) }}{% endblock %}</div>
+					<div class="span9">
+					{% else %}
+					<div class="span12">
+					{% endif %}
+					{% block ssn_therapass_content %}
+						{% block oxygen_passbook_content %}{% endblock %}
+					{% endblock %}
+					</div>
 				</div>
 			</div>
 		</div><!--/row-->
