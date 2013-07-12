@@ -43,7 +43,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* HERO UNIT */
 .hero-unit {
-	background-color: #BBE132;
+	/*background-color: #BBE132;*/
     margin-bottom: 20px;
     padding: 30px;
 }

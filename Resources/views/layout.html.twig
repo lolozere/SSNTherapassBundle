@@ -84,7 +84,7 @@
 		<hr>
 		<footer>
 	      	{% block footer %}
-	        <p>&copy; {{ 'salon.name'|trans({}, 'ssn_therapass') }} - <a href="{{ path('login') }}">{{ 'footer.administration'|trans({}, 'ssn_therapass') }}</a></p>
+	        <p>&copy; {{ 'salon.name'|trans({}, 'ssn_therapass') }} {% if opened %}- <a href="{{ path('login') }}">{{ 'footer.administration'|trans({}, 'ssn_therapass') }}{% endif %}</a></p>
 	      	{% endblock %}
 		</footer>
     </div><!--/.fluid-container-->
