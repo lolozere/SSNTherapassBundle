@@ -10,6 +10,18 @@ body {
   padding: 9px 0;
 }
 
+/* GRID */
+.grid-row-actions { list-style: none; margin: 0; padding: 0; }
+.grid-row-actions li { display: inline-block; margin-right: 4px; }
+.grid-row-actions li:after { content: ' | ' }
+.grid-row-actions li:last-child:after { content: '' }
+
+/* FORM */
+.input-required { color: red; font-weight: bold; }
+.form-error { list-style: none; margin: 0 0 2px 0; }
+.form-error li { display: block; margin: 0; }
+.form-error li { padding: 3px; margin: 2px 0; background-color: transparent; border: 0; }
+
 /* MAIN MENU */
 .navbar.main .navbar-inner {
     background-color: #835963;

@@ -26,7 +26,7 @@ menu:
     accueil: Accueil
     booking: Reservations
     booking: Reservations
-    salon:
-        name: Le Salon Santé Nature
-        name: Découvrir le salon
+    settings:
+        title: Réglages
+        events: Evènements
         

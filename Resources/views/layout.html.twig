@@ -74,6 +74,17 @@
 					{% else %}
 					<div class="span12">
 					{% endif %}
+					
+					<h1>
+					{% block ssn_therapass_title %}
+						{% block oxygen_passbook_title %}{% endblock %}
+            		{% endblock ssn_therapass_title %}
+            		</h1>
+            		
+            		{% block ssn_therapass_messages %}
+            		{% autoescape false %}{{ oxygen_flash_messages() }}{% endautoescape %}
+            		{% endblock ssn_therapass_messages %}
+            		
 					{% block ssn_therapass_content %}
 						{% block oxygen_passbook_content %}{% endblock %}
 					{% endblock %}
@@ -94,8 +105,11 @@
     <!-- Placed at the end of the document so the pages load faster -->
     {% block javascripts %}
 	    {% javascripts
-		    '@SSNTherapassBundle/Resources/public/jquery/jquery-1.10.2.min.js'
+		    '@SSNTherapassBundle/Resources/public/js/google-code-prettify/prettify.js'
+		    '@SSNTherapassBundle/Resources/public/jquery/jquery.min.js'
+		    '@SSNTherapassBundle/Resources/public/jquery/jquery-ui/js/jquery-ui.custom.min.js'
 		    '@SSNTherapassBundle/Resources/public/bootstrap/js/bootstrap.min.js'
+		    '@SSNTherapassBundle/Resources/public/js/application.js'
 		%}
 		<script src="{{ asset_url }}"></script>
 		{% endjavascripts %}
