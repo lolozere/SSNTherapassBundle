@@ -4,21 +4,17 @@
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
                   http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
                   
-		<entity name="SSN\TherapassBundle\Entity\Event" table="ssn_therapass_event" repository-class="%oxygen_passbook.entities.event.repository%">
+		<entity name="SSN\TherapassBundle\Entity\EventProduct" table="ssn_therapass_event_product" repository-class="%oxygen_passbook.entities.event_product.repository%">
 			<id name="id" type="integer" column="id">
             	<generator strategy="AUTO" />
        		</id>
 			<field name="name" type="string" length="100" nullable="false" />
-			<field name="dateStart" type="datetime" nullable="false" />
-			<field name="dateEnd" type="datetime" nullable="false" />
+			<field name="description" type="text" nullable="true" />
+			<field name="url" type="string" nullable="true" />
 			
-			<one-to-many field="products" target-entity="SSN\TherapassBundle\Entity\EventProduct" mapped-by="event">
-       			<cascade>
-                	<cascade-persist/>
-                	<cascade-remove />
-            	</cascade>
-        	</one-to-many>
-			 	
+			<many-to-one field="event" target-entity="SSN\TherapassBundle\Entity\Event" inversed-by="products">
+       		</many-to-one>
+			
 		</entity>
 		
 </doctrine-mapping>
