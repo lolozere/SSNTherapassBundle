@@ -12,7 +12,14 @@
 			<field name="dateStart" type="datetime" nullable="false" />
 			<field name="dateEnd" type="datetime" nullable="false" />
 			
-			<one-to-many field="products" target-entity="SSN\TherapassBundle\Entity\EventProduct" mapped-by="event">
+			<one-to-many field="products" target-entity="EventProduct" mapped-by="event">
+       			<cascade>
+                	<cascade-persist/>
+                	<cascade-remove />
+            	</cascade>
+        	</one-to-many>
+        	
+        	<one-to-many field="tickets" target-entity="EventTicket" mapped-by="event">
        			<cascade>
                 	<cascade-persist/>
                 	<cascade-remove />

@@ -15,6 +15,7 @@
 			    // tooltip / popover
 				this.element.find('[data-toggle="tooltip"]').tooltip();
 				this.element.find('[data-toggle="popover"]').popover();
+				this.element.find('[data-toggle="collapse"]').collapse({toggle: false});
 			} catch (e) {
 				(typeof(console) !== "undefined" && console.log) && console.log(e);
 			}

@@ -2,6 +2,9 @@ body {
   padding-top: 0px;
   padding-bottom: 10px;
 }
+body > .container-fluid {
+	width: 1150px; position: relative; margin: auto; padding: 0;
+}
 .masthead {
 	background-image: url(../bundles/ssntherapass/images/header-bg.png);
 	background-position: center top; background-repeat: no-repeat;
@@ -47,10 +50,14 @@ body {
     color: #fff;
 }
 
+/* ACCORDION */
+.accordion-heading { background-color: #F5F5F5; }
+
 /* TYPOGRAPHY */
 h1, h2, h3, h4, h5, h6 {
     color: #E23371;
 }
+h3 { color: #835963; }
 
 
 /* HERO UNIT */

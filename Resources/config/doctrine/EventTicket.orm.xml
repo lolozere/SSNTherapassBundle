@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                  http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+                  
+		<entity name="SSN\TherapassBundle\Entity\EventTicket" table="ssn_therapass_event_ticket" repository-class="%oxygen_passbook.entities.event_ticket.repository%">
+			
+			<id name="id" type="integer" column="id">
+            	<generator strategy="AUTO" />
+       		</id>
+       		
+       		<field name="limitAnimations" type="integer" nullable="false" />
+       		<field name="name" type="string" nullable="false" />
+			
+			<many-to-one field="event" target-entity="Event" inversed-by="tickets">
+       		</many-to-one>
+			
+		</entity>
+		
+</doctrine-mapping>
