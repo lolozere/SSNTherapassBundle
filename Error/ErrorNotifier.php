@@ -86,6 +86,24 @@ class ErrorNotifier extends ExceptionHandler {
 		return FlattenException::create(new \Exception($message), 500);
 	}
 	
+	/**
+	 * Flush sent email
+	 *
+	 * From digging some Symfony and SwiftMailer code, I can see that the memory spool is flushed on the kernel.terminate event
+	 * that occurs after a response was sent. Here you can force to flush spool
+	 */
+	public function flushMail() {
+		$transport = $this->container->get('mailer')->getTransport();
+		if (!$transport instanceof \Swift_Transport_SpoolTransport) {
+			return;
+		}
+		$spool = $transport->getSpool();
+		if (!$spool instanceof \Swift_MemorySpool) {
+			return;
+		}
+		$spool->flushQueue($this->container->get('swiftmailer.transport.real'));
+	}
+	
 	protected function createHtmlView($exception) {
 		$content = '';
 		$title = '';
@@ -125,7 +143,7 @@ class ErrorNotifier extends ExceptionHandler {
 			->setTo($this->container->getParameter('error_notification_mail'))
 			->setBody($this->createHtmlView($exception), 'text/html');
 		$r = $this->container->get('mailer')->send($message);
-		$this->container->get('mailer')->flush();
+		$this->flushMail();
 	}
 	
 	public function checkFatalError() {
@@ -136,9 +154,8 @@ class ErrorNotifier extends ExceptionHandler {
 				) {
 				$headers  = 'MIME-Version: 1.0' . "\r\n";
 				$headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
-				mail($this->container->getParameter('error_notification_mail'), 'SSN - Error', $this->createHtmlView(
-						$this->getFatalErrorMessage($error['message'], $error['file'], $error['line'])), $headers
-					);
+				$exception = $this->getFatalErrorMessage($error['message'], $error['file'], $error['line']);
+				mail($this->container->getParameter('error_notification_mail'), 'SSN - Error', $this->createHtmlView($exception, $headers));
 			}
 		}
 	}
