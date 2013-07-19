@@ -104,6 +104,12 @@ footer > p { text-align: center; }
   padding: 7px 9px;
 }
 
+@media (max-width: 1200px) {
+  	body > .container-fluid {
+		width: 100%; position: relative; margin: auto; padding: 0;
+	}
+}
+
 /* RESPONSIVE */
 @media (max-width: 980px) {
   /* Enable use of floated navbar text */
