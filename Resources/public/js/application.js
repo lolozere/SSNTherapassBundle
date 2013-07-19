@@ -1,4 +1,4 @@
-(function( $ ) {
+;(function( $ ) {
 	$.widget( "ui.application", {
 		_create: function() {},
 		_init: function() {
