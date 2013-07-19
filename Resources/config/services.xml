@@ -4,17 +4,21 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <!--
-    <parameters>
-        <parameter key="ssn_therapass.example.class">SSN\TherapassBundle\Example</parameter>
-    </parameters>
-
     <services>
-        <service id="ssn_therapass.example" class="%ssn_therapass.example.class%">
-            <argument type="service" id="service_id" />
-            <argument>plain_value</argument>
-            <argument>%parameter_name%</argument>
+        <service id="ssn_therapass.response" class="SSN\TherapassBundle\EventListener\ResponseListener">
+            <argument type="service" id="service_container" />
+            <tag name="kernel.event_listener" event="kernel.response" method="onResponse"></tag>
         </service>
+        
+        <!-- Error -->
+        <service id="ssn_therapass.error.notifier" class="SSN\TherapassBundle\Error\ErrorNotifier">
+            <argument type="service" id="service_container" />
+        </service>
+        <service id="ssn_therapass.error" class="SSN\TherapassBundle\EventListener\ErrorCatcher">
+            <argument type="service" id="service_container" />
+            <tag name="kernel.event_listener" event="kernel.exception" method="onKernelException"  priority="255"></tag>
+        </service>
+        
     </services>
-    -->
+
 </container>

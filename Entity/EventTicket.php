@@ -1,7 +1,7 @@
 <?php
 namespace SSN\TherapassBundle\Entity;
 
-use Oxygen\PassbookBundle\Entity\EventTicket as OxygenEventTicket;
+use SSN\TherapassBundle\Model\EventTicketModel;
 
 /**
  * Ticket require to access event
@@ -9,27 +9,7 @@ use Oxygen\PassbookBundle\Entity\EventTicket as OxygenEventTicket;
  * @author lolozere
  *
  */
-class EventTicket extends OxygenEventTicket
+class EventTicket extends EventTicketModel
 {
 
-	protected $weezeventTicketId;
-	
-	/**
-	* @param string $weezeventTicketId
-	* @return EventTicket
-	*/
-	public function setWeezeventTicketId($weezeventTicketId)
-	{
-	    $this->weezeventTicketId = $weezeventTicketId;
-	    return $this;
-	}
-	 
-	/**
-	* @return string
-	*/
-	public function getWeezeventTicketId()
-	{
-	    return $this->weezeventTicketId;
-	}
-	
 }

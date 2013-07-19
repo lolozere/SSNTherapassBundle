@@ -1,3 +1,7 @@
 ssn_therapass_home:
     pattern:  /
     defaults: { _controller: 'SSNTherapassBundle:Default:index' }
+
+ssn_therapass_encode_password:
+    pattern:  /password/{password}
+    defaults: { _controller: 'SSNTherapassBundle:Admin:encodePassword' }

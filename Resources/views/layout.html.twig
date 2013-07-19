@@ -95,7 +95,7 @@
 		<hr>
 		<footer>
 	      	{% block footer %}
-	        <p>&copy; {{ 'salon.name'|trans({}, 'ssn_therapass') }} {% if opened %}- <a href="{{ path('login') }}">{{ 'footer.administration'|trans({}, 'ssn_therapass') }}{% endif %}</a></p>
+	        <p>&copy; {{ 'salon.name'|trans({}, 'ssn_therapass') }} {% if open_mode == 'admin' or open_mode == 'full' %}- <a href="{{ path('login') }}">{{ 'footer.administration'|trans({}, 'ssn_therapass') }}{% endif %}</a></p>
 	      	{% endblock %}
 		</footer>
     </div><!--/.fluid-container-->
@@ -110,6 +110,7 @@
 		    '@SSNTherapassBundle/Resources/public/jquery/jquery-ui/js/jquery-ui.custom.min.js'
 		    '@SSNTherapassBundle/Resources/public/bootstrap/js/bootstrap.min.js'
 		    '@SSNTherapassBundle/Resources/public/js/application.js'
+		    '@SSNTherapassBundle/Resources/public/js/addons/*.js'
 		%}
 		<script src="{{ asset_url }}"></script>
 		{% endjavascripts %}

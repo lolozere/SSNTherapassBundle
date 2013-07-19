@@ -4,17 +4,16 @@
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
                   http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
                   
-		<entity name="SSN\TherapassBundle\Entity\EventTicket" table="ssn_therapass_event_ticket" repository-class="%oxygen_passbook.entities.event_ticket.repository%">
-			
+		<entity name="SSN\TherapassBundle\Entity\EventProductSlot" table="ssn_therapass_event_product_slot" repository-class="%oxygen_passbook.entities.event_product_slot.repository%">
 			<id name="id" type="integer" column="id">
             	<generator strategy="AUTO" />
        		</id>
        		
-       		<field name="limitAnimations" type="integer" nullable="false" />
-       		<field name="name" type="string" nullable="false" />
-       		<field name="weezeventTicketId" type="string" nullable="false" />
+			<field name="dateStart" type="datetime" nullable="false" />
+			<field name="dateEnd" type="datetime" nullable="false" />
+			<field name="seatMax" type="integer" nullable="false" />
 			
-			<many-to-one field="event" target-entity="Event" inversed-by="tickets">
+			<many-to-one field="eventProduct" target-entity="EventProduct" inversed-by="slots">
        		</many-to-one>
 			
 		</entity>

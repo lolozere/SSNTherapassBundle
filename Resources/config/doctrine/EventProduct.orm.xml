@@ -12,8 +12,15 @@
 			<field name="description" type="text" nullable="true" />
 			<field name="url" type="string" nullable="true" />
 			
-			<many-to-one field="event" target-entity="SSN\TherapassBundle\Entity\Event" inversed-by="products">
+			<many-to-one field="event" target-entity="Event" inversed-by="products">
        		</many-to-one>
+       		
+       		<one-to-many field="slots" target-entity="EventProductSlot" mapped-by="eventProduct">
+       			<cascade>
+                	<cascade-persist/>
+                	<cascade-remove />
+            	</cascade>
+        	</one-to-many>
 			
 		</entity>
 		

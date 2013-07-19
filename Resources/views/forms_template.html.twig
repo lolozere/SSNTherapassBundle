@@ -1,0 +1,6 @@
+{% use 'form_div_layout.html.twig' with choice_widget as base_choice_widget %}
+
+{% block oxygen_weezevent_tickets_type_widget %}
+{% set attr = attr|merge({'class': (attr.class|default('') ~ ' row-fluid')|trim}) %}
+{{ block('base_choice_widget') }}
+{% endblock %}

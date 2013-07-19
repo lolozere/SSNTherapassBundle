@@ -17,11 +17,11 @@
 
 {% block body %}
 <div class="container">
-	{% if error %}
-    <div class="alert-error">{{ error.message }}</div>
-	{% endif %}
     <form class="form-signin" action="{{ path('login_check') }}" method="post">
         <h2 class="form-signin-heading">Merci de vous connecter</h2>
+        {% if error %}
+	    <div class="alert alert-error">{{ error.message|trans({}, 'ssn_therapass') }}</div>
+		{% endif %}
         <input type="text" name="_username" class="input-block-level" placeholder="Utilisateur" value="{{ last_username }}">
         <input type="password" name="_password" class="input-block-level" placeholder="Mot de passe">
         <!-- <label class="checkbox">

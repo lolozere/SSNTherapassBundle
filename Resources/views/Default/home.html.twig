@@ -2,7 +2,7 @@
 
 {% block ssn_therapass_content %}
 <div class="hero-unit">
-	{% if opened %}
+	{% if open_mode == 'full' %}
 	<h1>{{ 'home.header.title'|trans({}, 'ssn_therapass') }}</h1>
 	<p>
 		{{ 'home.header.introduction'|trans({}, 'ssn_therapass') }}
@@ -14,7 +14,7 @@
 	</p>
 	{% endif %}
 </div>
-{% if opened %}
+{% if open_mode == 'full' %}
 <div class="row-fluid">
 	<div class="span6">
 		<h2>{{ 'home.book.title'|trans({}, 'ssn_therapass') }}</h2>

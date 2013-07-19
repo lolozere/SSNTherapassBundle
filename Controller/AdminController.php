@@ -1,6 +1,10 @@
 <?php
 namespace SSN\TherapassBundle\Controller;
 
+use Symfony\Component\HttpFoundation\Response;
+
+use Symfony\Component\Security\Core\User\User;
+
 use Oxygen\FrameworkBundle\Controller\OxygenController;
 
 /**
@@ -10,6 +14,15 @@ use Oxygen\FrameworkBundle\Controller\OxygenController;
  *
  */
 class AdminController extends OxygenController {
+	
+	public function encodePasswordAction($password) {
+		$factory = $this->get('security.encoder_factory');
+		$user = new User('admin', $password);
+		
+		$encoder = $factory->getEncoder($user);
+		$password = $encoder->encodePassword($user->getPassword(), $user->getSalt());
+		return Response::create($password);
+	}
 	
 	/**
 	 * Home page Administration

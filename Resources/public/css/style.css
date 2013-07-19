@@ -24,6 +24,11 @@ body > .container-fluid {
 .form-error { list-style: none; margin: 0 0 2px 0; }
 .form-error li { display: block; margin: 0; }
 .form-error li { padding: 3px; margin: 2px 0; background-color: transparent; border: 0; }
+.table[data-prototype] input,
+.table[data-prototype] select { margin: 0; }
+.table[data-prototype] td { vertical-align: middle; }
+
+{ margin: 4px; }
 
 /* MAIN MENU */
 .navbar.main .navbar-inner {

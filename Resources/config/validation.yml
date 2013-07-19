@@ -1,0 +1,5 @@
+SSN\TherapassBundle\Model\EventTicketModel:
+  properties:
+    weezeventTicketId:
+      - NotBlank: { message: 'Veuillez préciser', groups: ['default'] }
+    

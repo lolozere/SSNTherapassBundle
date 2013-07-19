@@ -1,3 +1,4 @@
 ssn_therapass_admin_home:
     pattern:  /
     defaults: { _controller: 'SSNTherapassBundle:Admin:index' }
+        
