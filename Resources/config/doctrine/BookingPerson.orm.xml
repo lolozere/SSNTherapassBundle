@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                  http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+                  
+		<entity name="SSN\TherapassBundle\Entity\BookingPerson" table="ssn_therapass_booking_person" repository-class="%oxygen_passbook.entities.booking_person.repository%">
+			<id name="id" type="integer" column="id">
+            	<generator strategy="AUTO" />
+       		</id>
+       		
+			<field name="name" type="string" length="100" nullable="false" />
+			<field name="email" type="string" length="100" nullable="false" />
+			
+			<one-to-many field="bookingSlots" target-entity="BookingSlot" mapped-by="bookingPerson">
+       			<cascade>
+                	<cascade-persist/>
+                	<cascade-remove />
+            	</cascade>
+        	</one-to-many>
+			      	
+		</entity>
+		
+</doctrine-mapping>
