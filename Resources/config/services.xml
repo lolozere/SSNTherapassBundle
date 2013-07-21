@@ -19,6 +19,15 @@
             <tag name="kernel.event_listener" event="kernel.exception" method="onKernelException"  priority="255"></tag>
         </service>
         
+        <!-- Login -->
+        <service id="ssn_therapass.form.login.type" class="SSN\TherapassBundle\Form\Type\BookingLoginFormType">
+        	<tag name="form.type" alias="ssn_therapass_login_type" />
+        </service>
+        <service id="ssn_therapass.form.login" class="SSN\TherapassBundle\Form\Handler\BookingLoginForm">
+        	<tag name="oxygen.form" id="ssn_therapass_login_form" 
+        		formType="ssn_therapass_login_type" dataClass="SSN\TherapassBundle\Form\Model\BookingLoginFormModel" />
+        </service>
+        
     </services>
 
 </container>

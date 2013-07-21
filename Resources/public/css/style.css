@@ -21,12 +21,11 @@ body > .container-fluid {
 
 /* FORM */
 .input-required { color: red; font-weight: bold; }
-.form-error { list-style: none; margin: 0 0 2px 0; }
-.form-error li { display: block; margin: 0; }
-.form-error li { padding: 3px; margin: 2px 0; background-color: transparent; border: 0; }
+.form-error .icon-warning-sign { cursor: help; }
+.form-errors-list { list-style: none; margin: 0 0 2px 0; }
+.form-errors-list li { display: block; margin: 0; padding: 3px; margin: 2px 0; background-color: transparent; border: 0; }
 .table[data-prototype] input,
 .table[data-prototype] select { margin: 0; }
-.table[data-prototype] td { vertical-align: middle; }
 
 { margin: 4px; }
 

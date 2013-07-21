@@ -1,6 +1,8 @@
 <?php
 namespace SSN\TherapassBundle\Controller;
 
+use Symfony\Component\HttpFoundation\Response;
+
 use Symfony\Component\Security\Core\SecurityContext;
 
 use Oxygen\FrameworkBundle\Controller\OxygenController;
@@ -31,6 +33,20 @@ class SecurityController extends OxygenController {
 				'last_username' => $session->get(SecurityContext::LAST_USERNAME),
 				'error'         => $error,
 		));
+	}
+	
+	/**
+	 * Action pour se connecter aux réservations
+	 * 
+	 */
+	public function loginBookingAction() {
+		$form = $this->get('oxygen_framework.form')->getForm('ssn_therapass_login_form');
+		if ($form->isSubmitted()) {
+			if ($form->process()) {
+				return $this->redirect($this->generateUrl('ssn_therapass_booking_index'));
+			}
+		}
+		return $this->render('SSNTherapassBundle:Security:login-ticket.html.twig', array('form' => $form->createView()));
 	}
 	
 }

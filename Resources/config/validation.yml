@@ -2,4 +2,10 @@ SSN\TherapassBundle\Model\EventTicketModel:
   properties:
     weezeventTicketId:
       - NotBlank: { message: 'Veuillez préciser', groups: ['default'] }
-    
+
+SSN\TherapassBundle\Form\Model\BookingLoginFormModel:
+  properties:
+    weezeventTicketId:
+      - NotBlank: { message: 'Information obligatoire', groups: ['default'] }
+    barcode:
+      - NotBlank: { message: 'Information obligatoire', groups: ['default'] }

@@ -1,0 +1,8 @@
+booking:
+    barcode_required: Veuillez saisir le n° du ticket
+    barcode_bad: N° de billet inconnu
+    
+form_login:
+    errors:
+        noevent: Aucune réservation n'est ouverte avec ce billet
+   

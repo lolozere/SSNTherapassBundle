@@ -37,6 +37,7 @@
 </head>
 <body>
   	{% set is_admin = (app.security.getToken() is not null and is_granted('ROLE_ADMIN')) %}
+  	{% set is_booker = (app.security.getToken() is not null and is_granted('ROLE_BOOKER')) %}
   	{% block body %}
     <div class="container-fluid">
     	{% block header %}
@@ -53,11 +54,13 @@
 					    <ul class="nav">
 					    	{% block navigation_links %}
 					    	{% if is_admin %}
-					    	<li><a href="{{ path('ssn_therapass_admin_home') }}">Tableau de bord</a></li>
-							<li><a href="{{ path('logout') }}">Se déconnecter</a></li>
+							<li><a href="{{ path('ssn_therapass_admin_logout') }}">Se déconnecter</a></li>
+							{% elseif is_booker %}
+							<li><a href="{{ path('ssn_therapass_booking_index') }}">Accueil</a></li>
+							<li><a href="{{ path('ssn_therapass_logout') }}">Se déconnecter</a></li>
 							{% else %}
 						    <li class="active"><a href="{{ path('ssn_therapass_home') }}">{{ 'menu.accueil'|trans({}, 'ssn_therapass') }}</a></li>
-						    <li><a href="#">{{ 'menu.booking'|trans({}, 'ssn_therapass') }}</a></li>
+						    <li><a href="{{ path('ssn_therapass_booking_index') }}">{{ 'menu.booking'|trans({}, 'ssn_therapass') }}</a></li>
 						    {% endif %}
 						    {% endblock %}
 					    </ul>
@@ -95,7 +98,7 @@
 		<hr>
 		<footer>
 	      	{% block footer %}
-	        <p>&copy; {{ 'salon.name'|trans({}, 'ssn_therapass') }} {% if open_mode == 'admin' or open_mode == 'full' %}- <a href="{{ path('login') }}">{{ 'footer.administration'|trans({}, 'ssn_therapass') }}{% endif %}</a></p>
+	        <p>&copy; {{ 'salon.name'|trans({}, 'ssn_therapass') }} {% if open_mode == 'admin' or open_mode == 'full' %}- <a href="{{ path('ssn_therapass_admin_login') }}">{{ 'footer.administration'|trans({}, 'ssn_therapass') }}{% endif %}</a></p>
 	      	{% endblock %}
 		</footer>
     </div><!--/.fluid-container-->

@@ -10,11 +10,15 @@
        		</id>
 
 			<field name="createdAt" type="datetime" nullable="false" />
-			
+			<field name="weezeventTicketNumber" type="string" length="100" nullable="true" />
+						
 			<many-to-one field="bookingPerson" target-entity="BookingPerson" inversed-by="bookingSlots">
        		</many-to-one>
        		
        		<many-to-one field="eventProductSlot" target-entity="EventProductSlot">
+       		</many-to-one>
+			
+			<many-to-one field="eventTicket" target-entity="EventTicket">
        		</many-to-one>
 			
 		</entity>

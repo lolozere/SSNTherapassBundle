@@ -18,6 +18,10 @@
                 	<cascade-remove />
             	</cascade>
         	</one-to-many>
+        	
+        	<unique-constraints>
+        		<unique-constraint columns="email" name="unique_email" />
+        	</unique-constraints>
 			      	
 		</entity>
 		

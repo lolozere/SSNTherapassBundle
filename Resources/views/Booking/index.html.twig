@@ -1,0 +1,29 @@
+{% extends oxygen_layout() %}
+
+{% block ssn_therapass_title %}
+{% if events|length>0 %}
+{{ 'booking.index.title'|trans({'%name%': events.0.getName() }, 'ssn_therapass') }}
+{% else %}
+{{ 'booking.index.title_ending'|trans({}, 'ssn_therapass') }}
+{% endif %}
+{% endblock %}
+
+{% block ssn_therapass_content %}
+{% if events|length>0 %}
+<p>Votre adresse email : {{ email }}</p>
+<div>
+	<form method="post" {{ form_enctype(form) }}>
+	{{ form_errors(form) }}
+	{{ form_widget(form) }}
+	{{ form_rest(form) }}
+	<p>
+		<input formnovalidate type="submit" value="{{ 'oxygen_passbook.event.save'|trans }}" class="btn btn-primary" />
+	</p>
+	</form>
+</div>
+{% else %}
+<div class="alert alert-warning">
+{{ 'booking.index.close'|trans({}, 'ssn_therapass') }}
+</div>
+{% endif %}
+{% endblock %}

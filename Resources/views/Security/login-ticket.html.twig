@@ -1,0 +1,20 @@
+{% extends oxygen_layout() %}
+
+{% block meta_title %}
+	Accès réservations | {{ parent() }}
+{% endblock %}
+
+{% block ssn_therapass_title %}
+{{ 'booking.login.section_name'|trans({}, 'ssn_therapass') }}
+{% endblock ssn_therapass_title %}
+
+{% block ssn_therapass_content %}
+{{ parent() }}
+<form method="post" {{ form_enctype(form) }}>
+	{{ form_widget(form) }}
+	{{ form_rest(form) }}
+	<p>
+		<input formnovalidate type="submit" value="{{ 'booking.login.button'|trans({}, 'ssn_therapass') }}" class="btn btn-primary" />
+	</p>
+</form>
+{% endblock ssn_therapass_content %}

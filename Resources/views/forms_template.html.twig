@@ -1,6 +1,30 @@
-{% use 'form_div_layout.html.twig' with choice_widget as base_choice_widget %}
+{% use 'OxygenPassbookBundle::forms_template.html.twig' %}
+
+{% block _oxygen_passbook_booking_type_useBarcode_row %}
+<div>
+	<label class="checkbox inline" data-toggle="collapse" data-target="#booking-barcode">
+		{{ form_widget(form) }} {{ form_label(form, null, { plaintext: true }) }}
+	</label>
+	<div class="alert alert-info" style="margin-top: 0.5em;">
+		{{ 'booking.admin.weezevent_intro'|trans({}, 'ssn_therapass') }}
+		<br />{{ 'booking.admin.weezevent_reason'|trans({}, 'ssn_therapass') }}
+	</div>
+</div>
+{% endblock %}
+
+{% block oxygen_passbook_booking_type_widget_ticket %}
+{{ form_row(form.eventTicket) }}
+{{ form_row(form.useBarcode) }}
+<div id="booking-barcode" class="collapse {{ (form.useBarcode.vars['data'])?'in':'' }}" style="margin-top: 1em;">
+	{{ form_row(form.barcode) }}
+</div>
+{% endblock %}
 
 {% block oxygen_weezevent_tickets_type_widget %}
 {% set attr = attr|merge({'class': (attr.class|default('') ~ ' row-fluid')|trim}) %}
-{{ block('base_choice_widget') }}
+{{ block('choice_widget') }}
+{% endblock %}
+
+{% block _ssn_therapass_login_type_weezeventTicketId_widget %}
+{{ block('choice_widget') }}
 {% endblock %}

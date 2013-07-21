@@ -1,0 +1,3 @@
+ssn_therapass_booking_index:
+    pattern:   /
+    defaults:  { _controller: 'SSNTherapassBundle:Booking:index' }

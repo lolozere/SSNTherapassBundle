@@ -15,6 +15,13 @@
 			    // tooltip / popover
 				this.element.find('[data-toggle="tooltip"]').tooltip();
 				this.element.find('[data-toggle="popover"]').popover();
+				//Popover and tooltip in acccordion collapse
+				this.element.find('.accordion').on('hide', function (e) {
+					$(e.target).removeClass('visible');
+			    });
+				this.element.find('.accordion').on('shown', function (e) {
+					$(e.target).addClass('visible');
+			    });
 				// prototype form
 				this.element.find('[data-prototype]').each(function() {
 					var collectionHolder = $(this);

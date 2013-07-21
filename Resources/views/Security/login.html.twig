@@ -17,7 +17,7 @@
 
 {% block body %}
 <div class="container">
-    <form class="form-signin" action="{{ path('login_check') }}" method="post">
+    <form class="form-signin" action="{{ path('ssn_therapass_admin_login_check') }}" method="post">
         <h2 class="form-signin-heading">Merci de vous connecter</h2>
         {% if error %}
 	    <div class="alert alert-error">{{ error.message|trans({}, 'ssn_therapass') }}</div>

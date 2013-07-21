@@ -2,7 +2,8 @@
 	<div class="well sidebar-nav">
     	<ul class="nav nav-list">
         	<li class="nav-header">{{ 'menu.booking_slot.title'|trans({}, 'ssn_therapass') }}</li>
-            <li><a href="{{ path('oxygen_passbook_booking_event_list') }}">{{ 'menu.booking_slot.add'|trans({}, 'ssn_therapass') }}</a></li>
+            <li><a href="{{ path('oxygen_passbook_booking_event_list') }}">{{ 'menu.booking_slot.current'|trans({}, 'ssn_therapass') }}</a></li>
+            <li><a href="{{ path('oxygen_passbook_printing_event_list') }}">{{ 'menu.booking_slot.printing'|trans({}, 'ssn_therapass') }}</a></li>
             <li class="nav-header">{{ 'menu.settings.title'|trans({}, 'ssn_therapass') }}</li>
             <li><a href="{{ path('oxygen_passbook_event_list') }}">{{ 'menu.settings.events'|trans({}, 'ssn_therapass') }}</a></li>
 		</ul>

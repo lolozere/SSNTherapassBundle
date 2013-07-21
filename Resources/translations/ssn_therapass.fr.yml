@@ -17,6 +17,19 @@ home:
         title: Utiliser son Pass
         content: Réservez votre Pass Bien-être directement sur le site du Salon Santé Nature grâce à notre partenaire Weezevent
         btn: Commandez votre Pass »
+        
+booking:
+    barcode_required: Veuillez saisir le n° du ticket
+    admin:
+        weezevent_intro: Si la personne réservant a acheté un billet sur Weezevent, veuillez cocher la case  et saisir le n° du billet.
+        weezevent_reason: Ainsi, il ne sera pas possible pour cette personne de faire une double réservation en utilisant à nouveau son n° de billet.
+    login:
+        section_name: Accès aux réservations
+        button: Commencer la réservation
+    index:
+        title_ending: Réservations clôturées
+        title: Réservations %name%
+        close: Les réservations ne sont plus accessibles car l'évènement est passé
    
 layout:
     title: Réservation soins
@@ -30,6 +43,8 @@ menu:
     booking_slot:
         title: Reservations
         add: Ajouter
+        current: En cours
+        printing: Impressions
     settings:
         title: Réglages
         events: Evènements
