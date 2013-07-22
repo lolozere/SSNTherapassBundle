@@ -28,6 +28,12 @@
         		formType="ssn_therapass_login_type" dataClass="SSN\TherapassBundle\Form\Model\BookingLoginFormModel" />
         </service>
         
+        <!-- mail -->
+        <service id="ssn_therapass.mailer" class="SSN\TherapassBundle\Mail\Mailer">
+		    <argument type="service" id="service_container" />
+		    <argument type="service" id="twig" />
+		</service>
+        
     </services>
 
 </container>

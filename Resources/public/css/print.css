@@ -1,0 +1,8 @@
+.row-fluid .masthead { display: none; }
+.mastnav { display: none; }
+.row-fluid .adminnav { display: none; }
+footer { display: none; }
+.row-fluid .content-main {
+	margin: 0; padding: 0; width: 100%;
+}
+#form-filter { display: none; }

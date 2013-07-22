@@ -2,7 +2,7 @@
 
 {% block ssn_therapass_title %}
 {% if events|length>0 %}
-{{ 'booking.index.title'|trans({'%name%': events.0.getName() }, 'ssn_therapass') }}
+{{ 'booking.index.title'|trans({}, 'ssn_therapass') }}
 {% else %}
 {{ 'booking.index.title_ending'|trans({}, 'ssn_therapass') }}
 {% endif %}
@@ -12,14 +12,41 @@
 {% if events|length>0 %}
 <p>Votre adresse email : {{ email }}</p>
 <div>
-	<form method="post" {{ form_enctype(form) }}>
-	{{ form_errors(form) }}
-	{{ form_widget(form) }}
-	{{ form_rest(form) }}
-	<p>
-		<input formnovalidate type="submit" value="{{ 'oxygen_passbook.event.save'|trans }}" class="btn btn-primary" />
-	</p>
-	</form>
+	<table class="table table-small">
+		<tbody>
+			{% for event in events %}
+			<tr>
+				<td><strong>{{ event.getName() }}</strong></td>
+				<td>{% if bookings[event.getId()] is defined %}
+				{% for booking in bookings[event.getId()] %}
+				{% spaceless %}
+				<span class="display: block; padding: 0.3em;">
+					{% if booking.getEventProductSlot().getEventProduct().getUrl() is not null %}
+					<a href="{{ booking.getEventProductSlot().getEventProduct().getUrl() }}" target="_blank">{{ booking.getEventProductSlot().getEventProduct().getName() }}</a>
+					{% else %}
+					{{ booking.getEventProductSlot().getEventProduct().getName() }}
+					{% endif %}
+					- {{ booking.getEventProductSlot().__toString() }}
+				</span>
+				{% endspaceless %}
+				{% endfor %}
+				{% endif %}</td>
+				<td>
+				{% if event.isOpened() %}
+				<a href="{{ path('ssn_therapass_booking_event', { eventId: event.getId() }) }}" class="btn btn-primary">
+					{% if bookings[event.getId()] is defined %}
+					{{ ('booking.index.book_change.'~event.getType())|trans({}, 'ssn_therapass') }}
+					{% else %}
+					{{ ('booking.index.book.'~event.getType())|trans({}, 'ssn_therapass') }}
+					{% endif %}</a>
+				{% else %}
+					{{ ('booking.index.event_closed')|trans({}, 'ssn_therapass') }}
+				{% endif %}
+				</td>
+			</tr>
+			{% endfor %}
+		</thead>
+	</table>
 </div>
 {% else %}
 <div class="alert alert-warning">

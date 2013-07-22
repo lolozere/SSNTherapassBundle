@@ -16,6 +16,10 @@
 			
 			<many-to-one field="event" target-entity="Event" inversed-by="tickets">
        		</many-to-one>
+       		
+       		<unique-constraints>
+        		<unique-constraint columns="event_id,weezeventTicketId" name="unique_ticket" />
+        	</unique-constraints>
 			
 		</entity>
 		

@@ -1,6 +1,8 @@
 <?php
 namespace SSN\TherapassBundle\Form\Handler;
 
+use Doctrine\ORM\UnitOfWork;
+
 use Symfony\Component\Form\FormError;
 
 use Oxygen\PassbookBundle\Form\Handler\BookingForm as Base;
@@ -16,12 +18,22 @@ class BookingForm extends Base {
 	public function onLoad(array $params) {
 		parent::onLoad($params);
 		
-		// Get if barcode
-		foreach($this->orignalSlots as $bookingSlot) {
-			if (!is_null($bookingSlot->getWeezeventTicketNumber())) {
-				$this->getData()->setUseBarcode(true);
-				$this->getData()->setBarcode($bookingSlot->getWeezeventTicketNumber());
+		if (!empty($params['weezeventTicketNumber'])) {
+			$this->getData()->setUseBarcode(true);
+			$this->getData()->setBarcode($params['weezeventTicketNumber']);
+		} else {
+			// Get if barcode
+			foreach($this->orignalSlots as $bookingSlot) {
+				if (!is_null($bookingSlot->getWeezeventTicketNumber())) {
+					$this->getData()->setUseBarcode(true);
+					$this->getData()->setBarcode($bookingSlot->getWeezeventTicketNumber());
+				}
 			}
+		}
+		if (!empty($params['email'])) {
+			$this->options['person_options']['email_disabled'] = true;
+			$this->options['person_options']['label'] = 'form.booking.user_data';
+			$this->getData()->getPerson()->setEmail($params['email']);
 		}
 		
 		return $this;
@@ -47,9 +59,11 @@ class BookingForm extends Base {
 				}
 				$weezTicketId = $this->getData()->getBarcode();
 			}
+			$totalBookings = 0;
 			foreach($this->getData()->getPerson()->getBookingSlots() as $bookingSlot) {
-				if ($bookingSlot->getEventProductSlot()->getEventProduct()->getEvent()->getId() == $this->event->getId()) {
+				if ($bookingSlot->getEventTicket()->getId() == $this->getData()->getEventTicket()->getId()) {
 					$bookingSlot->setWeezeventTicketNumber($weezTicketId);
+					$totalBookings++;
 				}
 			}
 			
@@ -57,11 +71,42 @@ class BookingForm extends Base {
 			 * Check if ticket number (accros multiple multiple person) doesn't atteindre the max allowed
 			 * @todo
 			 */
+			if ($this->getData()->getUseBarcode() && !is_null($this->getData()->getBarcode())) {
+				$bookings = $this->container->get('oxygen_framework.entities')->getManager('oxygen_passbook.booking_slot')->getRepository()->findBy(array('weezeventTicketNumber' => $this->getData()->getBarcode()));
+				$totalBookingsOther = 0;
+				foreach($bookings as $booking) {
+					if (is_null($this->getData()->getPerson()->getId()) || $booking->getBookingPerson()->getId() != $this->getData()->getPerson()->getId()) {
+						$totalBookingsOther++;
+					}
+				}
+				if ($totalBookingsOther>=$this->getData()->getEventTicket()->getLimitAnimations()) {
+					$this->form->addError(new FormError('booking.limits_by_other_ending', null, array('%bookings%' => $totalBookingsOther)));
+					return false;
+				} elseif (($totalBookingsOther+$totalBookings)>$this->getData()->getEventTicket()->getLimitAnimations()) {
+					$this->form->addError(new FormError('booking.limits_by_other', null, array('%bookings%' => $totalBookingsOther, '%max%' => ($this->getData()->getEventTicket()->getLimitAnimations()-$totalBookingsOther))));
+					return false;
+				}
+			}
 			
 			return true;
 		} else {
 			return false;
 		}
+	}
+	
+	public function onSuccess() {
+		/*
+		 * Send email
+		*/
+		$swiftMessage = $this->container->get('ssn_therapass.mailer')->getMailMessage(
+				'SSNTherapassBundle:Booking:mail-confirm.html.twig', array(
+						'is_changing' => !is_null($this->getData()->getPerson()->getId()),
+						'bookings' => $this->getData()->getPerson()->getBookingSlots(),
+						'event' => $this->event,
+			));
+		$this->container->get('ssn_therapass.mailer')->send($swiftMessage, $this->getData()->getPerson()->getEmail());
+		
+		return parent::onSuccess();
 	}
 	
 }

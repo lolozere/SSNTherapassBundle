@@ -13,11 +13,14 @@ body > .container-fluid {
   padding: 9px 0;
 }
 
+#form-filter { margin-bottom: 1em; }
+
 /* GRID */
 .grid-row-actions { list-style: none; margin: 0; padding: 0; }
 .grid-row-actions li { display: inline-block; margin-right: 4px; }
 .grid-row-actions li:after { content: ' | ' }
 .grid-row-actions li:last-child:after { content: '' }
+.grid-column-__actions { white-space:nowrap; }
 
 /* FORM */
 .input-required { color: red; font-weight: bold; }
@@ -26,6 +29,9 @@ body > .container-fluid {
 .form-errors-list li { display: block; margin: 0; padding: 3px; margin: 2px 0; background-color: transparent; border: 0; }
 .table[data-prototype] input,
 .table[data-prototype] select { margin: 0; }
+
+/* TABLE */
+.table-small { width: auto; }
 
 { margin: 4px; }
 

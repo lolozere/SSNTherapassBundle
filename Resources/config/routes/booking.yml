@@ -1,3 +1,9 @@
 ssn_therapass_booking_index:
     pattern:   /
     defaults:  { _controller: 'SSNTherapassBundle:Booking:index' }
+    
+ssn_therapass_booking_event:
+    pattern:   /book/{eventId}
+    defaults:  { _controller: 'SSNTherapassBundle:Booking:booking' }
+    requirements:
+        eventId: \d+

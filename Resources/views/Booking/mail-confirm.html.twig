@@ -1,0 +1,57 @@
+{% extends 'SSNTherapassBundle::layout-email.html.twig' %}
+
+{% block mail_subject  %}
+{{ 'booking.book.subject_mail'|trans({}, 'ssn_therapass') }}
+{% endblock %}
+
+{% block mail_html_content_body %}
+<p>
+	Bonjour,
+</p>
+<p>
+	{% if is_changing %}
+	Suite aux modifications apportées à vos réservations sur {{ event.getName() }}, veuillez trouver le récapitulatif. 
+	{% else %}
+	Suite à vos réservations sur {{ event.getName() }}, veuillez trouver le récapitulatif.
+	{% endif %}
+</p>
+<p>
+	<strong>Le récapitulatif est à conserver pour vous rappeler de vos réservations lors de l'évènement</strong> 
+</p>
+<h3>Récapitulatif de vos réservations</h3>
+<p>
+	<table cellpadding="2" cellspacing="2" border="0">
+		<tbody>
+			{% for booking in bookings %}
+			<tr>
+				<td valign="top">
+					{% if booking.getEventProductSlot().getEventProduct().getUrl() is not null %}
+					<a href="{{ booking.getEventProductSlot().getEventProduct().getUrl() }}" target="_blank">{{ booking.getEventProductSlot().getEventProduct().getName() }}</a>
+					{% else %}
+					{{ booking.getEventProductSlot().getEventProduct().getName() }}
+					{% endif %}
+				</td>
+				<td valign="top">
+					{{ booking.getEventProductSlot().__toString() }}
+				</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</p>
+{% endblock %}
+
+{% block mail_txt_content_body %}
+Bonjour,
+
+{% if is_changing %}Suite aux modifications apportées à vos réservations sur {{ event.getName() }}, veuillez trouver le récapitulatif. 
+{% else %}Suite à vos réservations sur {{ event.getName() }}, veuillez trouver le récapitulatif.{% endif %}
+
+IMPORTANT : Le récapitulatif est à conserver pour vous rappeler de vos réservations lors de l'évènement
+
+Récapitulatif de vos réservations
+---------------------------------
+{% for booking in bookings %}
+> {{ booking.getEventProductSlot().getEventProduct().getName() }}		{% autoescape false %}{{ booking.getEventProductSlot().__toString() }}{% endautoescape %}
+{% endfor %}
+{% endblock %}

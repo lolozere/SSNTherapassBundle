@@ -22,37 +22,80 @@ class BookingController extends OxygenController {
 				$this->get('session')->get('weezeventTicketId')
 			);
 		
-		$form = null;
-		if (count($events) > 0) {
-			// get email
-			$email = $this->get('oxygen_weezevent.api')->getEmail(
-					$this->get('session')->get('weezeventTicketNumber'),
-					$this->get('session')->get('weezeventTicketId')
-				);
-			
-			$bookingPerson = null;
-			$bookingPersonId = null;
-			// Search by email
-			$bookingPerson = $this->get('oxygen_framework.entities')->getManager('oxygen_passbook.booking_person')->getRepository()->findOneByEmail(
-					$email
-				);
-			if (!is_null($bookingPerson)) {
-				$bookingPersonId = $bookingPerson->getId();
-			}
-			
-			// create form
-			$form = $this->get('oxygen_framework.form')->getForm('oxygen_passbook_booking_form', array(
-					'eventId' => $events[0]->getId(), 'bookingPersonId' => $bookingPersonId, 'email' => $email,
-					'weezeventTicketNumber' => $this->get('session')->get('weezeventTicketNumber')
-			));
-			if ($form->isSubmitted()) {
-				if ($form->process()) {
-					// ok
+		// get email
+		$email = $this->get('oxygen_weezevent.api')->getEmail(
+				$this->get('session')->get('weezeventTicketNumber'),
+				$this->get('session')->get('weezeventTicketId')
+		);
+		
+		// Get if bookings for events
+		$bookPersons = $this->get('oxygen_framework.entities')->getManager('oxygen_passbook.booking_person')->getRepository()->findByWeezeventTicketNumber(
+				$this->get('session')->get('weezeventTicketNumber')
+			);
+		$bookings = array();
+		foreach($bookPersons as $bookPerson) {
+			foreach($bookPerson->getBookingSlots() as $bookingSlot) {
+				if ($bookingSlot->getWeezeventTicketNumber() == $this->get('session')->get('weezeventTicketNumber')) {
+					if (empty($bookings[$bookingSlot->getEventProductSlot()->getEventProduct()->getEvent()->getId()])) {
+						$bookings[$bookingSlot->getEventProductSlot()->getEventProduct()->getEvent()->getId()] = array();
+					}
+					$bookings[$bookingSlot->getEventProductSlot()->getEventProduct()->getEvent()->getId()][] = $bookingSlot;
 				}
 			}
 		}
 		
-		return $this->render('SSNTherapassBundle:Booking:index.html.twig', array('events' => $events, 'email' => $email, 'form' => $form->createView()));
+		return $this->render('SSNTherapassBundle:Booking:index.html.twig', array('events' => $events, 'email' => $email, 'bookings' => $bookings));
+	}
+	
+	public function bookingAction($eventId) {
+		
+		$event = $this->get('oxygen_framework.entities')->getManager('oxygen_passbook.event')->getRepository()->find(
+				$eventId
+			);
+		
+		if (is_null($event)) {
+			throw $this->createNotFoundException($this->translate('booking.book.notfound_event', array('id' => $eventId), 'ssn_therapass'));
+		}
+		
+		// get email
+		$email = $this->get('oxygen_weezevent.api')->getEmail(
+				$this->get('session')->get('weezeventTicketNumber'),
+				$this->get('session')->get('weezeventTicketId')
+		);
+		
+		$bookingPerson = null;
+		$bookingPersonId = null;
+		// Search by email
+		$bookingPerson = $this->get('oxygen_framework.entities')->getManager('oxygen_passbook.booking_person')->getRepository()->findOneByEmail(
+				$email
+		);
+		if (!is_null($bookingPerson)) {
+			$bookingPersonId = $bookingPerson->getId();
+		}
+			
+		// get default ticket
+		$eventTicket = $this->get('oxygen_framework.entities')->getManager('oxygen_passbook.event_ticket')->getRepository()->findOneBy(array(
+				'weezeventTicketId' => $this->get('session')->get('weezeventTicketId'),
+				'event' => $eventId
+			));
+		if (is_null($eventTicket)) {
+			throw $this->createNotFoundException($this->translate('booking.book.notfound_event_ticket', array('name' => $event->getName(), 'weezeventTicketId' => $this->get('session')->get('weezeventTicketId')), 'ssn_therapass'));
+		}
+			
+		// create form
+		$form = $this->get('oxygen_framework.form')->getForm('oxygen_passbook_booking_form', array(
+				'eventId' => $event->getId(), 'bookingPersonId' => $bookingPersonId, 'email' => $email,
+				'weezeventTicketNumber' => $this->get('session')->get('weezeventTicketNumber'),
+				'eventTicket' => $eventTicket
+		));
+		if ($form->isSubmitted()) {
+			if ($form->process()) {
+				return $this->redirect($this->generateUrl('ssn_therapass_booking_index'));
+			}
+		}
+		
+		return $this->render('SSNTherapassBundle:Booking:book.html.twig', array('event' => $event, 'email' => $email, 'form' => $form->createView()));
+		
 	}
 	
 }

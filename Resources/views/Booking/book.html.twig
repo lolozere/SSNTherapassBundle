@@ -1,0 +1,18 @@
+{% extends oxygen_layout() %}
+
+{% block ssn_therapass_title %}
+{{ 'booking.book.title'|trans({'%name%': event.getName()}, 'ssn_therapass') }}
+{% endblock %}
+
+{% block ssn_therapass_content %}
+<div>
+	<form method="post" {{ form_enctype(form) }}>
+	{{ form_errors(form) }}
+	{{ form_widget(form) }}
+	{{ form_rest(form) }}
+	<p>
+		<input formnovalidate type="submit" value="{{ 'booking.book.save'|trans({}, 'ssn_therapass') }}" class="btn btn-primary" />
+	</p>
+	</form>
+</div>
+{% endblock %}

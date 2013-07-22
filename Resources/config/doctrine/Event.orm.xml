@@ -12,6 +12,7 @@
 			<field name="dateStart" type="datetime" nullable="false" />
 			<field name="dateEnd" type="datetime" nullable="false" />
 			<field name="type" type="string" length="100" nullable="false" />
+			<field name="opened" type="boolean" nullable="false" />
 			
 			<one-to-many field="products" target-entity="EventProduct" mapped-by="event">
        			<cascade>

@@ -14,6 +14,12 @@
 	{{ form_widget(form) }}
 	{{ form_rest(form) }}
 	<p>
+		<a href="#" data-toggle="collapse" data-target="#ticket-help">Où trouver le n° du billet ?</a>
+		<div id="ticket-help" class="collapse">
+			<img src="{{ asset('bundles/ssntherapass/images/billet.jpg') }}" alt="Exemple de billet" />
+		</div>
+	</p>
+	<p>
 		<input formnovalidate type="submit" value="{{ 'booking.login.button'|trans({}, 'ssn_therapass') }}" class="btn btn-primary" />
 	</p>
 </form>

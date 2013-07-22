@@ -1,6 +1,8 @@
 booking:
     barcode_required: Veuillez saisir le n° du ticket
     barcode_bad: N° de billet inconnu
+    limits_by_other: %bookings% réservations ont été faites par d'autres personnes avec votre n° de billet. Vous ne pouvez donc sélectionner que %max% créneaux horaires.
+    limits_by_other_ending: %bookings% réservations ont été faites par d'autres personnes avec votre n° de billet. Vous ne pouvez donc sélectionner de nouveaux créneaux horaires.
     
 form_login:
     errors:
