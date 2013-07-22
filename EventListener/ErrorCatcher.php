@@ -1,9 +1,9 @@
 <?php
 namespace SSN\TherapassBundle\EventListener;
 
-use Symfony\Component\Debug\Exception\FlattenException;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
-use Symfony\Component\Finder\Exception\AccessDeniedException;
+use Symfony\Component\Debug\Exception\FlattenException;
 
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
