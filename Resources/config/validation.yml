@@ -3,6 +3,11 @@ SSN\TherapassBundle\Model\EventTicketModel:
     weezeventTicketId:
       - NotBlank: { message: 'Veuillez préciser', groups: ['default'] }
 
+SSN\TherapassBundle\Model\EventProductModel:
+  properties:
+    location:
+      - NotBlank: { message: 'Veuillez préciser. Exemple : Stand 23', groups: ['default'] }
+
 SSN\TherapassBundle\Form\Model\BookingLoginFormModel:
   properties:
     weezeventTicketId:

@@ -1,6 +1,9 @@
 <?php
 namespace SSN\TherapassBundle\Entity;
 
-use Oxygen\PassbookBundle\Entity\EventProduct as Base;
+use SSN\TherapassBundle\Model\EventProductModel as Base;
 
-class EventProduct extends Base {}
+class EventProduct extends Base
+{
+
+}

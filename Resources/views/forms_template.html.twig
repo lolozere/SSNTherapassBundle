@@ -28,3 +28,22 @@
 {% block _ssn_therapass_login_type_weezeventTicketId_widget %}
 {{ block('choice_widget') }}
 {% endblock %}
+
+{% block oxygen_passbook_event_product_type_widget_informations %}
+{{ parent() }}
+{{ form_row(form.location) }}
+{% endblock oxygen_passbook_event_product_type_widget_informations %}
+
+{% block oxygen_passbook_booking_slot_type_row %}
+<tr>
+	<td>{{ form.vars['product'].getLocation() }}</td>
+	<td>{% spaceless %}
+		{% if form.vars['product'].getUrl() is not null %}
+			<a href="{{ form.vars['product'].getUrl() }}" target="_blank">{{ form_label(form, null, { plaintext: true }) }}</a>
+		{% else %}
+			{{ form_label(form, null, { plaintext: true }) }}
+		{% endif %}
+	{% endspaceless %}</td>
+	<td>{{ form_widget(form) }}{{ form_errors(form) }}</td>
+</tr>
+{% endblock %}

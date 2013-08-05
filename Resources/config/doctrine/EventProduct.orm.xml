@@ -11,6 +11,7 @@
 			<field name="name" type="string" length="100" nullable="false" />
 			<field name="description" type="text" nullable="true" />
 			<field name="url" type="string" nullable="true" />
+			<field name="location" type="string" nullable="false" />
 			
 			<many-to-one field="event" target-entity="Event" inversed-by="products">
        		</many-to-one>
