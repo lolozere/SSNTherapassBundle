@@ -43,6 +43,9 @@
 		{% else %}
 			{{ form_label(form, null, { plaintext: true }) }}
 		{% endif %}
+		{% if form.vars['product'].getDescription() is not null %}
+		<i class="icon-question-sign" data-toggle="popover" data-content="{{ form.vars['product'].getDescription()|nl2br|e }}" data-html="true" data-trigger="hover" style="cursor: help; margin-left: 2px;"></i>
+		{% endif %}
 	{% endspaceless %}</td>
 	<td>{{ form_widget(form) }}{{ form_errors(form) }}</td>
 </tr>
