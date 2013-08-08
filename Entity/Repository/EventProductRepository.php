@@ -18,8 +18,10 @@ class EventProductRepository extends Base
 			$matches = array();
 			if (preg_match('/([0-9]+)/', $product->getLocation(), $matches)) {
 				$order = substr_replace("0000", $matches[0], -strlen($matches[0]));
-				$productsToOrder[$order] = $product;
+			} else {
+				$order = '9999';
 			}
+			$productsToOrder[$order.'#'.$product->getName()] = $product;
 		}
 		ksort($productsToOrder);
 		return array_values($productsToOrder);
