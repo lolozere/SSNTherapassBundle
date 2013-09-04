@@ -3,7 +3,9 @@ booking:
     barcode_bad: N° de billet inconnu
     limits_by_other: %bookings% réservations ont été faites par d'autres personnes avec votre n° de billet. Vous ne pouvez donc sélectionner que %max% créneaux horaires.
     limits_by_other_ending: %bookings% réservations ont été faites par d'autres personnes avec votre n° de billet. Vous ne pouvez donc sélectionner de nouveaux créneaux horaires.
-    
+    errors:
+        booking_exist: %mail% a déjà des réservations avec le n° de ticket %barcode%. Pour les modifier, vous devez lister les réservations de %name% et modifier les réservations faites par cette personne. 
+ 
 form_login:
     errors:
         noevent: Aucune réservation n'est ouverte avec ce billet

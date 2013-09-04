@@ -20,7 +20,7 @@
 				<td>{% if bookings[event.getId()] is defined %}
 				{% for booking in bookings[event.getId()] %}
 				{% spaceless %}
-				<span class="display: block; padding: 0.3em;">
+				<span style="display: block; padding: 0.3em;">
 					{% if booking.getEventProductSlot().getEventProduct().getUrl() is not null %}
 					<a href="{{ booking.getEventProductSlot().getEventProduct().getUrl() }}" target="_blank">{{ booking.getEventProductSlot().getEventProduct().getName() }}</a>
 					{% else %}

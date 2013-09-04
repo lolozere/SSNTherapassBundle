@@ -11,6 +11,7 @@
        		
 			<field name="name" type="string" length="100" nullable="false" />
 			<field name="email" type="string" length="100" nullable="false" />
+			<field name="reference" type="string" length="100" nullable="true" />
 			
 			<one-to-many field="bookingSlots" target-entity="BookingSlot" mapped-by="bookingPerson">
        			<cascade>
@@ -20,7 +21,7 @@
         	</one-to-many>
         	
         	<unique-constraints>
-        		<unique-constraint columns="email" name="unique_email" />
+        		<unique-constraint columns="email,reference" name="unique_person" />
         	</unique-constraints>
 			      	
 		</entity>

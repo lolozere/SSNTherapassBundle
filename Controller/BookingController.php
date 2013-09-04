@@ -66,10 +66,10 @@ class BookingController extends OxygenController {
 		$bookingPerson = null;
 		$bookingPersonId = null;
 		// Search by email
-		$bookingPerson = $this->get('oxygen_framework.entities')->getManager('oxygen_passbook.booking_person')->getRepository()->findOneByEmail(
-				$email
-		);
-		if (!is_null($bookingPerson)) {
+		$bookingPerson = $this->get('oxygen_framework.entities')->getManager('oxygen_passbook.booking_person')->getRepository()->findOneBy(
+				array('email' =>$email, 'reference' => $this->get('session')->get('weezeventTicketNumber'))
+			);
+		if (!is_null($bookingPerson) > 0) {
 			$bookingPersonId = $bookingPerson->getId();
 		}
 			

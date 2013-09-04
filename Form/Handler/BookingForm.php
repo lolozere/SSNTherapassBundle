@@ -39,6 +39,37 @@ class BookingForm extends Base {
 		return $this;
 	}
 	
+	/**
+	 * Search unique person (or create) to registrer bookings
+	 *
+	 */
+	protected function getBookingPerson() {
+		//Get booking person by email
+		$bookingPerson =  $this->container->get('oxygen_framework.entities')->getManager('oxygen_passbook.booking_person')->getRepository()->findOneBy(
+				array('email' => $this->getData()->getPerson()->getEmail(), 'reference'  => $this->getData()->getBarcode())
+		);
+		if (!is_null($bookingPerson)) {
+			foreach($bookingPerson->getBookingSlots() as $bookingSlot) {
+				if ($bookingSlot->getEventTicket()->getId() == $this->getData()->getEventTicket()->getId()) {
+					$this->form->addError(new FormError('booking.errors.booking_exist', null, array(
+							'%mail%' => $this->getData()->getPerson()->getEmail(),
+							'%name%' => $this->options['event']->getName(),
+							'%barcode%' => $this->getData()->getBarcode(),
+					)));
+					break;
+				}
+			}
+			// Transfer data to existing person
+			$bookingPerson->setName($this->getData()->getPerson()->getName());
+			$bookingPerson->setEmail($this->getData()->getPerson()->getEmail());
+			$this->getData()->setPerson($bookingPerson);
+		} else {
+			$bookingPerson = $this->getData()->getPerson();
+			$this->container->get('doctrine.orm.entity_manager')->persist($bookingPerson);
+		}
+		return $bookingPerson;
+	}
+	
 	public function onSubmit() {
 		$successed = parent::onSubmit();
 		if ($successed) {
@@ -48,6 +79,7 @@ class BookingForm extends Base {
 					return false;
 				}
 			}
+			
 			$weezTicketId = null;
 			if ($this->getData()->getUseBarcode()) {
 				$ticketValid = $this->container->get('oxygen_weezevent.api')->isIdWeezTicketValid(
@@ -59,6 +91,10 @@ class BookingForm extends Base {
 				}
 				$weezTicketId = $this->getData()->getBarcode();
 			}
+			
+			// Set reference for person
+			$this->getData()->getPerson()->setReference($weezTicketId);
+			
 			$totalBookings = 0;
 			foreach($this->getData()->getPerson()->getBookingSlots() as $bookingSlot) {
 				if ($bookingSlot->getEventTicket()->getId() == $this->getData()->getEventTicket()->getId()) {
