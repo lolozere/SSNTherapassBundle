@@ -51,6 +51,9 @@ booking:
         book_change: 
             care: Modifier vos intervenants
             conference: Modifier vos conférences
+        book_print_confirmation:
+            btn_title: Imprimer confirmation
+            help: Si vous n'avez pas reçu l'email de confirmation à imprimer, cliquez-ici et imprimer.
    
 layout:
     title: Réservation soins

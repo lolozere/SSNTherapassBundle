@@ -33,12 +33,18 @@
 				{% endif %}</td>
 				<td>
 				{% if event.isOpened() %}
-				<a href="{{ path('ssn_therapass_booking_event', { eventId: event.getId() }) }}" class="btn btn-primary">
+				<p><a href="{{ path('ssn_therapass_booking_event', { eventId: event.getId() }) }}" class="btn btn-primary">
 					{% if bookings[event.getId()] is defined %}
 					{{ ('booking.index.book_change.'~event.getType())|trans({}, 'ssn_therapass') }}
 					{% else %}
 					{{ ('booking.index.book.'~event.getType())|trans({}, 'ssn_therapass') }}
-					{% endif %}</a>
+					{% endif %}
+				</a></p>
+				{% if bookings[event.getId()]|length > 0 %}
+				<p><a data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="{{ ('booking.index.book_print_confirmation.help')|trans({}, 'ssn_therapass') }}" href="{{ path('ssn_therapass_booking_event_print', { eventId: event.getId() }) }}" target="_blank" class="btn btn-default">
+					{{ ('booking.index.book_print_confirmation.btn_title')|trans({}, 'ssn_therapass') }}
+				</a></p>
+				{% endif %}
 				{% else %}
 					{{ ('booking.index.event_closed')|trans({}, 'ssn_therapass') }}
 				{% endif %}

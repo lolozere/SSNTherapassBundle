@@ -47,6 +47,26 @@ class BookingController extends OxygenController {
 		return $this->render('SSNTherapassBundle:Booking:index.html.twig', array('events' => $events, 'email' => $email, 'bookings' => $bookings));
 	}
 	
+	public function bookingPrintConfirmationAction($eventId) {
+		
+		// Get event
+		$event = $this->get('oxygen_framework.entities')->getManager('oxygen_passbook.event')->getRepository()->find($eventId);
+		
+		// Get booking person
+		$bookPersons = $this->get('oxygen_framework.entities')->getManager('oxygen_passbook.booking_person')->getRepository()->findByWeezeventTicketNumber(
+				$this->get('session')->get('weezeventTicketNumber')
+		);
+		
+		//Chargement du template
+		$template = $this->get('twig')->loadTemplate('SSNTherapassBundle:Booking:mail-confirm.html.twig'); //on récupére les blocks
+		$params = array_merge($this->get('twig')->getGlobals(), array(
+				'is_changing' => false,
+				'bookings' => $bookPersons[0]->getBookingSlots(),
+				'event' => $event
+			));
+		return Response::create($template->renderBlock('mail_html_content', $params));
+	}
+	
 	public function bookingAction($eventId) {
 		
 		$event = $this->get('oxygen_framework.entities')->getManager('oxygen_passbook.event')->getRepository()->find(

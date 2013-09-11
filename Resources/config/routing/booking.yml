@@ -1,7 +1,13 @@
 ssn_therapass_booking_index:
     pattern:   /
     defaults:  { _controller: 'SSNTherapassBundle:Booking:index' }
-    
+
+ssn_therapass_booking_event_print:
+    pattern:   /book/{eventId}/print-confirmation
+    defaults:  { _controller: 'SSNTherapassBundle:Booking:bookingPrintConfirmation' }
+    requirements:
+        eventId: \d+
+
 ssn_therapass_booking_event:
     pattern:   /book/{eventId}
     defaults:  { _controller: 'SSNTherapassBundle:Booking:booking' }
