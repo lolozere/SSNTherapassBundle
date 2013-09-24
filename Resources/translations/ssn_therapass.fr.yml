@@ -44,7 +44,8 @@ booking:
         title_ending: Réservations clôturées
         title: Réservations
         close: Les réservations ne sont plus accessibles car l'évènement est passé
-        event_closed: Réservations non encore ouvertes. Veuillez revenir ultérieurement.
+        event_scheduled: Réservations non encore ouvertes. Veuillez revenir ultérieurement.
+        event_closed: Réservations clôturées. Veuillez nous contacter au 06 81 39 04 67 pour toutes modifications ou nouvelles réservations.
         book: 
             care: Choisir vos intervenants
             conference: Choisir vos conférences

@@ -40,7 +40,7 @@ class BookingLoginForm extends Form {
 			return false;
 		}
 		
-		// Check if goog billet
+		// Check if good billet
 		$ticketValid = $this->container->get('oxygen_weezevent.api')->isIdWeezTicketValid(
 				$this->getData()->barcode, $this->getData()->weezeventTicketId
 		);

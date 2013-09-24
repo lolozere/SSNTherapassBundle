@@ -21,6 +21,8 @@
         
         <!-- Login -->
         <service id="ssn_therapass.form.login.type" class="SSN\TherapassBundle\Form\Type\BookingLoginFormType">
+        	<argument type="service" id="oxygen_framework.entities" />
+        	<argument type="service" id="oxygen_weezevent.api" />
         	<tag name="form.type" alias="ssn_therapass_login_type" />
         </service>
         <service id="ssn_therapass.form.login" class="SSN\TherapassBundle\Form\Handler\BookingLoginForm">
