@@ -1,0 +1,10 @@
+ssn_therapass_weezevents:
+    pattern:  /
+    defaults: { _controller: 'SSNTherapassBundle:Weezevent:index' }
+    
+ssn_therapass_weezevent_participants:
+    pattern:  /ticket/{ticketId}/participants
+    defaults: { _controller: 'SSNTherapassBundle:Weezevent:participants' }
+    requirements:
+        ticketId: \d+
+        

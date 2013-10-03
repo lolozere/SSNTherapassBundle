@@ -55,7 +55,22 @@ booking:
         book_print_confirmation:
             btn_title: Imprimer confirmation
             help: Si vous n'avez pas reçu l'email de confirmation à imprimer, cliquez-ici et imprimer.
-   
+
+weezevent_admin:
+    events:
+        title: Weezevent > Tickets
+        event: Evènement
+        ticket: Ticket
+        list_participants: Participants
+    participants:
+        title: Weezevent > %event% > Participants
+        info: %number% tickets ont été vendus. Les personnes sont listées de la date d'achat la plus récente à la plus ancienne.
+        noparticipants: Aucun achat de tickets n'a été fait sur Weezevent
+        name: Personne
+        email: Email
+        ticketnumber: N° de ticket
+        booked: Utilisé sur la plateforme ?
+        
 layout:
     title: Réservation soins
 
@@ -70,6 +85,8 @@ menu:
         add: Ajouter
         current: En cours
         printing: Impressions
+        end: Terminés
+        weezevents: Suivi weezevent
     settings:
         title: Réglages
         events: Evènements

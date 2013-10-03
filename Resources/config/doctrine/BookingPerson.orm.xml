@@ -11,6 +11,7 @@
        		
 			<field name="name" type="string" length="100" nullable="false" />
 			<field name="email" type="string" length="100" nullable="false" />
+			<field name="phone" type="string" length="30" nullable="true" />
 			<field name="reference" type="string" length="100" nullable="true" />
 			
 			<one-to-many field="bookingSlots" target-entity="BookingSlot" mapped-by="bookingPerson">

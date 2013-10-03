@@ -3,6 +3,10 @@ Barcode: N° de billet Weezevent
 Use barcode: Utiliser un n° de billet Weezevent
 Location: Emplacement
 
+form:
+    booking:
+        user_data_admin: Informations sur le bénéficiaire
+
 # Perso par type d'évènements
 care:
     form:
@@ -17,3 +21,4 @@ conference:
             slots_title: Choisir les conférences
             slots_introduction: Parmi les conférences proposées ci-dessous, sélectionner un créneau horaire
             slots_limitation: Le ticket utilisé vous donne droit à %max% conférences maximum
+            

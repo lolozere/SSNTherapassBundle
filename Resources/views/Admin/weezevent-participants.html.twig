@@ -1,0 +1,42 @@
+{% extends oxygen_layout() %}
+
+{% block ssn_therapass_title %}
+{{ 'weezevent_admin.participants.title'|trans({ '%event%': eventName }, 'ssn_therapass') }}
+{% endblock %}
+
+{% block ssn_therapass_content %}
+{% if participants is not null and participants|length > 0 %}
+<div class="alert alert-info">
+	{{ 'weezevent_admin.participants.info'|trans({ '%number%': participants|length }, 'ssn_therapass') }}
+	<p>Si le participant a effectué une réservation avec ce billet, alors le nombre est indiqué dans une bulle verte. Sinon, c'est en rouge.</p>
+</div>
+<table class="table">
+	<thead>
+		<tr>
+			<th>{{ 'weezevent_admin.participants.name'|trans({}, 'ssn_therapass') }}</th>
+			<th>{{ 'weezevent_admin.participants.email'|trans({}, 'ssn_therapass') }}</th>
+			<th>{{ 'weezevent_admin.participants.ticketnumber'|trans({}, 'ssn_therapass') }}</th>
+			<th>{{ 'weezevent_admin.participants.booked'|trans({}, 'ssn_therapass') }}</th>
+		</tr>
+	</thead>
+	<tbod>
+{% for participant in participants %}
+		<tr>
+			<td>{{ participant['owner']['last_name'] }} {{ participant['owner']['first_name'] }}</td>
+			<td>{{ participant['owner']['email'] }}</td>
+			<td>{{ participant['id_weez_ticket'] }}</td>
+			<td>{% if participant['bookings'] > 0 %}
+			<span class="label label-success">{{ participant['bookings'] }} réservations</span>
+			{% else %}
+			<span class="label label-important">Non</span>
+			{% endif %}</td>
+		</tr>
+{% endfor %}
+	</tbod>
+</table>
+{% else %}
+<div class="alert alert-info">
+	{{ 'weezevent_admin.participants.noparticipants'|trans({}, 'ssn_therapass') }}
+</div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends oxygen_layout() %}
+
+{% block ssn_therapass_title %}
+{{ 'weezevent_admin.events.title'|trans({}, 'ssn_therapass') }}
+{% endblock %}
+
+{% block ssn_therapass_content %}
+<div class="alert alert-info">
+<p>Pour chaque billet vendu sur Weezevent, vous pouvez afficher la liste des personnes ayant commandées (participants).</p>
+</div>
+<table class="table">
+	<thead>
+		<tr>
+			<th>{{ 'weezevent_admin.events.event'|trans({}, 'ssn_therapass') }}</th>
+			<th>{{ 'weezevent_admin.events.ticket'|trans({}, 'ssn_therapass') }}</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbod>
+{% for ticket in tickets %}
+		<tr>
+			<td>{{ ticket['event']['name'] }}</td>
+			<td>{{ ticket['name'] }}</td>
+			<td>
+				<a class="btn btn-default" href="{{ path('ssn_therapass_weezevent_participants', { ticketId: ticket['id'] }) }}" data-trigger="tooltip" title="Lister les personnes détenant un billet selon Weezevent">{{ 'weezevent_admin.events.list_participants'|trans({}, 'ssn_therapass') }}</a>
+			</td>
+		</tr>
+{% endfor %}
+	</tbod>
+</table>
+{% endblock %}

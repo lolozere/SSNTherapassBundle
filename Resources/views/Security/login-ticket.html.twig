@@ -10,10 +10,6 @@
 
 {% block ssn_therapass_content %}
 {{ parent() }}
-<div class="alert alert-warning">
-La réservation de vos séances est possible jusqu'au mercredi 25 minuit.<br />
-Au-delà, pour les retardataires, téléphoner au 06 81 39 04 67.
-</div>
 <form method="post" {{ form_enctype(form) }}>
 	{{ form_widget(form) }}
 	{{ form_rest(form) }}
