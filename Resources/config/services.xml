@@ -30,6 +30,11 @@
         		formType="ssn_therapass_login_type" dataClass="SSN\TherapassBundle\Form\Model\BookingLoginFormModel" />
         </service>
         
+        <!-- application config -->
+        <service id="ssn_therapass.config" class="SSN\TherapassBundle\Model\ApplicationConfig">
+		    <argument type="service" id="doctrine.orm.entity_manager" />
+		</service>
+        
         <!-- mail -->
         <service id="ssn_therapass.mailer" class="SSN\TherapassBundle\Mail\Mailer">
 		    <argument type="service" id="service_container" />

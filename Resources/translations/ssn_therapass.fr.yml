@@ -23,6 +23,17 @@ home:
         content: Réservez vos rendez-vous auprès de nos intervenants 
         btn: Réserver »
         
+app_config:
+    header:
+        title: Configuration de l'application
+    form:
+        commandLink: 
+            label: Url weezent pour commander
+        alertBooking: 
+            label: Message d'informations sur les réservations. Il est affiché sur la page d'accueil.
+        success: Configuration enregistrée
+        submit: Enregistrer
+        
 booking:
     barcode_required: Veuillez saisir le n° du ticket
     admin:
@@ -90,4 +101,8 @@ menu:
     settings:
         title: Réglages
         events: Evènements
+        application: Application
+    documentation:
+        title: Documentation
+        admin: Administration
         

@@ -9,7 +9,7 @@ use Oxygen\FrameworkBundle\Controller\OxygenController;
 
 /**
  * Controller pour les accès sécurisés
- * 
+ *
  * @author lolozere
  *
  */
@@ -37,7 +37,7 @@ class SecurityController extends OxygenController {
 	
 	/**
 	 * Action pour se connecter aux réservations
-	 * 
+	 *
 	 */
 	public function loginBookingAction() {
 		$form = $this->get('oxygen_framework.form')->getForm('ssn_therapass_login_form');

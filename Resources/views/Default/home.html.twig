@@ -19,16 +19,17 @@
 	<div class="span6">
 		<h2>{{ 'home.book.title'|trans({}, 'ssn_therapass') }}</h2>
 		<p>{{ 'home.book.content'|trans({}, 'ssn_therapass') }}</p>
+		{% if not (alertBooking is null) %}
 		<div class="alert alert-warning">
-		La réservation de vos séances est possible jusqu'au mercredi 25 minuit.<br />
-		Au-delà, pour les retardataires, téléphoner au 06 81 39 04 67.
+		{{ alertBooking }}
 		</div>
+		{% endif %}
 		<p><a class="btn" href="{{ path('ssn_therapass_login') }}">{{ 'home.book.btn'|trans({}, 'ssn_therapass') }}</a></p>
 	</div><!--/span-->
 	<div class="span6">
 		<h2>{{ 'home.cmdpass.title'|trans({}, 'ssn_therapass') }}</h2>
 		<p>{{ 'home.cmdpass.content'|trans({}, 'ssn_therapass') }}</p>
-		<p><a class="btn" href="{{ book_pass_url }}">{{ 'home.cmdpass.btn'|trans({}, 'ssn_therapass') }}</a></p>
+		<p><a class="btn" href="{{ urlCommand }}">{{ 'home.cmdpass.btn'|trans({}, 'ssn_therapass') }}</a></p>
 	</div><!--/span-->
 </div><!--/row-->
 {% endif %}

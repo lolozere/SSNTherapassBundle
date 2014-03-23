@@ -1,4 +1,7 @@
 ssn_therapass_admin_home:
     pattern:  /
     defaults: { _controller: 'SSNTherapassBundle:Admin:index' }
-        
+
+oxygen_passbook_admin_config:
+    pattern:  /config
+    defaults: { _controller: 'SSNTherapassBundle:Admin:config' }

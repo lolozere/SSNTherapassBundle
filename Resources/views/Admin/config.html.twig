@@ -1,0 +1,9 @@
+{% extends oxygen_layout() %}
+
+{% block ssn_therapass_title %}
+{{ 'app_config.header.title'|trans({}, 'ssn_therapass') }}
+{% endblock %}
+
+{% block ssn_therapass_content %}
+{{ form(form) }}
+{% endblock %}
