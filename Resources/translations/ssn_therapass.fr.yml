@@ -30,7 +30,9 @@ app_config:
         commandLink: 
             label: Url weezent pour commander
         alertBooking: 
-            label: Message d'informations sur les réservations. Il est affiché sur la page d'accueil.
+            label: Message d'informations sur les réservations. Il est affiché sur la page d'accueil et l'écran de connexion
+        closeBooking: 
+            label: "Cocher pour bloquer l'accès aux réservations : "
         success: Configuration enregistrée
         submit: Enregistrer
         

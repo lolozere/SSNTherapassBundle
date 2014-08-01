@@ -10,6 +10,12 @@
 
 {% block ssn_therapass_content %}
 {{ parent() }}
+{% if not (alertBooking is null) %}
+<div class="alert alert-warning">
+{{ alertBooking }}
+</div>
+{% endif %}
+{% if not (closeBooking is defined) or not closeBooking %}
 <form method="post" {{ form_enctype(form) }}>
 	{{ form_widget(form) }}
 	{{ form_rest(form) }}
@@ -24,4 +30,5 @@
 		<input formnovalidate type="submit" value="{{ 'booking.login.button'|trans({}, 'ssn_therapass') }}" class="btn btn-primary" />
 	</p>
 </form>
+{% endif %}
 {% endblock ssn_therapass_content %}

@@ -21,8 +21,9 @@ class DefaultController extends OxygenController {
 		
 		$urlCommand = $this->get('ssn_therapass.config')->getValueOf('commandLink');
 		$alertBooking = $this->get('ssn_therapass.config')->getValueOf('alertBooking');
+		$closeBooking = $this->get('ssn_therapass.config')->getValueOf('closeBooking');
 		
-		return $this->render('SSNTherapassBundle:Default:home.html.twig', array('urlCommand' => $urlCommand, 'alertBooking' => $alertBooking));
+		return $this->render('SSNTherapassBundle:Default:home.html.twig', array('urlCommand' => $urlCommand, 'alertBooking' => $alertBooking, 'closeBooking' => $closeBooking));
 	}
 	
 }

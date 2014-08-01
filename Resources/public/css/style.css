@@ -30,6 +30,13 @@ body > .container-fluid {
 .table[data-prototype] input,
 .table[data-prototype] select { margin: 0; }
 
+label[for="form_closeBooking"] {
+	display: inline-block;
+}
+label + input[type="checkbox"] {
+	margin: 0;
+}
+
 /* TABLE */
 .table-small { width: auto; }
 

@@ -5,5 +5,13 @@
 {% endblock %}
 
 {% block ssn_therapass_content %}
-{{ form(form) }}
+{{ form_start(form) }}
+	{{ form_row(form.commandLink) }}
+	<h3>Accès aux réservations</h3>
+	{{ form_row(form.alertBooking) }}
+	<div>
+		{{ form_label(form.closeBooking) }}
+		{{ form_widget(form.closeBooking) }}
+	</div>
+{{ form_end(form) }}
 {% endblock %}

@@ -24,7 +24,9 @@
 		{{ alertBooking }}
 		</div>
 		{% endif %}
+		{% if not (closeBooking is defined) or not closeBooking %}
 		<p><a class="btn" href="{{ path('ssn_therapass_login') }}">{{ 'home.book.btn'|trans({}, 'ssn_therapass') }}</a></p>
+		{% endif %}
 	</div><!--/span-->
 	<div class="span6">
 		<h2>{{ 'home.cmdpass.title'|trans({}, 'ssn_therapass') }}</h2>
