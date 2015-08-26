@@ -57,7 +57,10 @@ class AdminController extends OxygenController
 		$datasConfig = array(
 			'commandLink' => $this->get('ssn_therapass.config')->getValueOf('commandLink'),
 			'alertBooking' => $this->get('ssn_therapass.config')->getValueOf('alertBooking'),
-			'closeBooking' => ($this->get('ssn_therapass.config')->getValueOf('closeBooking') == 1));
+			'closeBooking' => ($this->get('ssn_therapass.config')->getValueOf('closeBooking') == 1),
+			'jumbotronTitle' => $this->get('ssn_therapass.config')->getValueOf('jumbotronTitle'),
+			'jumbotronSubTitle' => $this->get('ssn_therapass.config')->getValueOf('jumbotronSubTitle'),
+		);
 		
 		$formBuilder = $this->createFormBuilder($datasConfig);
 		
@@ -67,6 +70,11 @@ class AdminController extends OxygenController
 				array('required' => false, 'label' => $this->translate('app_config.form.alertBooking.label', array(), 'ssn_therapass')));
 		$formBuilder->add('closeBooking', 'checkbox',
 				array('required' => false, 'value' => 1, 'label' => $this->translate('app_config.form.closeBooking.label', array(), 'ssn_therapass')));
+		$formBuilder->add('jumbotronTitle', 'text',
+				array('required' => true, 'label' => $this->translate('app_config.form.jumbotron.label.title', array(), 'ssn_therapass')));
+		$formBuilder->add('jumbotronSubTitle', 'textarea',
+				array('required' => true, 'label' => $this->translate('app_config.form.jumbotron.label.subTitle', array(), 'ssn_therapass')));
+		
 		$formBuilder->add('save', 'submit', array('label' => $this->translate('app_config.form.submit', array(), 'ssn_therapass')));
 		$form = $formBuilder->getForm();
 		
@@ -75,7 +83,7 @@ class AdminController extends OxygenController
 		
 		if ($form->isValid()) {
 			$data = $form->getData();
-			foreach (array_keys($datasConfig) as $fieldName) {
+			foreach (array_keys($data) as $fieldName) {
 				$this->get('ssn_therapass.config')->setConfig($fieldName, $data[$fieldName]);
 			}
 			$this->getDoctrine()->getEntityManager()->flush();

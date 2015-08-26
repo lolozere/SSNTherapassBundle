@@ -9,12 +9,18 @@ use Oxygen\FrameworkBundle\Controller\OxygenController;
 
 /**
  * Controller pour les accès sécurisés
- * 
+ *
  * @author lolozere
  *
  */
 class BookingController extends OxygenController {
-	
+	/**
+	 * Page d'accueil pour réserver les évènements ouverts
+	 *
+	 * Liste les réservations faites et les évènements en lien avec le ticket utilisé pour se connecter
+	 *
+	 * @return \Symfony\Component\HttpFoundation\Response
+	 */
 	public function indexAction()
 	{
 		// Check if event pass

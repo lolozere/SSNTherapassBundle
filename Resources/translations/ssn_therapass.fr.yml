@@ -15,13 +15,14 @@ home:
         book: Réservez vos soins »
         introduction: Comme chaque année, le salon Santé Nature vous propose des soins sur le pôle thérapeute grâce au Pass Bien-être !
     cmdpass:
-        title: Commander le Pass Bien-être
-        content: Réservez votre Pass Bien-être directement sur le site du Salon Santé Nature grâce à notre partenaire Weezevent
-        btn: Commander »
+        title: Achat de billets
+        content: Les réservations sont accessibles aux personnes détenteurs d'un billet valable et à commander directement sur le site du Salon Santé Nature grâce à notre partenaire Weezevent.
+        btn: Commander les billets »
     book:
-        title: Vous possédez un Pass Bien-être ?
-        content: Réservez vos rendez-vous auprès de nos intervenants 
-        btn: Réserver »
+        title: Réserver vos animations
+        no_events: Aucun évènement à venir n'est encore ouvert à la réservation
+        closed: Les réservations sont fermées
+        btn: Se connecter et réserver »
         
 app_config:
     header:
@@ -30,9 +31,13 @@ app_config:
         commandLink: 
             label: Url weezent pour commander
         alertBooking: 
-            label: Message d'informations sur les réservations. Il est affiché sur la page d'accueil et l'écran de connexion
+            label: Message d'informations sur les réservations. Il est affiché sur la page d'accueil et l'écran de connexion. Pour ne rien afficher, vous pouvez ne rien saisir.
         closeBooking: 
             label: "Cocher pour bloquer l'accès aux réservations : "
+        jumbotron:
+            label:
+                title: Titre
+                subTitle: Sous-titre
         success: Configuration enregistrée
         submit: Enregistrer
         
@@ -42,7 +47,7 @@ booking:
         weezevent_intro: Si la personne réservant a acheté un billet sur Weezevent, veuillez cocher la case  et saisir le n° du billet.
         weezevent_reason: Ainsi, il ne sera pas possible pour cette personne de faire une double réservation en utilisant à nouveau son n° de billet.
     login:
-        section_name: Accès aux réservations
+        section_name: Connexion pour réserver
         button: Commencer la réservation
     book:
         notfound_event: Evènement %id% inconnu
@@ -59,12 +64,6 @@ booking:
         close: Les réservations ne sont plus accessibles car l'évènement est passé
         event_scheduled: Réservations non encore ouvertes. Veuillez revenir ultérieurement.
         event_closed: Réservations clôturées. Veuillez nous contacter au 06 81 39 04 67 pour toutes modifications ou nouvelles réservations.
-        book: 
-            care: Choisir vos intervenants
-            conference: Choisir vos conférences
-        book_change: 
-            care: Modifier vos intervenants
-            conference: Modifier vos conférences
         book_print_confirmation:
             btn_title: Imprimer confirmation
             help: Si vous n'avez pas reçu l'email de confirmation à imprimer, cliquez-ici et imprimer.

@@ -22,8 +22,17 @@ class DefaultController extends OxygenController {
 		$urlCommand = $this->get('ssn_therapass.config')->getValueOf('commandLink');
 		$alertBooking = $this->get('ssn_therapass.config')->getValueOf('alertBooking');
 		$closeBooking = $this->get('ssn_therapass.config')->getValueOf('closeBooking');
+		$jumbotron = array(
+			"title" => $this->get('ssn_therapass.config')->getValueOf('jumbotronTitle'),
+			"sub_title" => $this->get('ssn_therapass.config')->getValueOf('jumbotronSubTitle'),
+		);
 		
-		return $this->render('SSNTherapassBundle:Default:home.html.twig', array('urlCommand' => $urlCommand, 'alertBooking' => $alertBooking, 'closeBooking' => $closeBooking));
+		$events = $this->get('oxygen_framework.entities')->getManager('oxygen_passbook.event')->getRepository()->findEventsBookable();
+		
+		return $this->render('SSNTherapassBundle:Default:home.html.twig', array(
+			'urlCommand' => $urlCommand, 'alertBooking' => $alertBooking, 'closeBooking' => $closeBooking,
+			'jumbotron' => $jumbotron, 'events' => $events
+		));
 	}
 	
 }

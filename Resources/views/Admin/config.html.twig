@@ -6,12 +6,33 @@
 
 {% block ssn_therapass_content %}
 {{ form_start(form) }}
-	{{ form_row(form.commandLink) }}
-	<h3>Accès aux réservations</h3>
-	{{ form_row(form.alertBooking) }}
-	<div>
-		{{ form_label(form.closeBooking) }}
-		{{ form_widget(form.closeBooking) }}
+	<h3>Page d'accueil</h3>
+	<div class="row-fluid">
+		<div class="span6">
+			<h4>Zone vedette</h4>
+			{{ form_row(form.jumbotronTitle) }}
+			{{ form_row(form.jumbotronSubTitle) }}
+		</div>
+		<div class="span6">
+			<h4></h4>
+		</div>
+	</div>
+	<h3>Réservations</h3>
+	<div class="row-fluid">
+		<div class="span6">
+			<h4>Paramétrage</h4>
+			{{ form_row(form.commandLink) }}
+			<div>
+				{{ form_label(form.closeBooking) }}
+				{{ form_widget(form.closeBooking) }}
+			</div>
+		</div>
+		<div class="span6">
+			<h4>Message d'informations</h4>
+			<p>Saisir un texte si nécessaire pour alerter sur information de dernière minute concernant les réservations : date d'ouverture, ...</p>
+			{{ form_errors(form.alertBooking) }}
+			{{ form_widget(form.alertBooking) }}
+		</div>
 	</div>
 {{ form_end(form) }}
 {% endblock %}

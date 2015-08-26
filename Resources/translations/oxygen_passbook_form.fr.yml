@@ -21,4 +21,10 @@ conference:
             slots_title: Choisir les conférences
             slots_introduction: Parmi les conférences proposées ci-dessous, sélectionner un créneau horaire
             slots_limitation: Le ticket utilisé vous donne droit à %max% conférences maximum
-            
+
+workshop_adult:
+    form:
+        booking:
+            slots_title: Choisir les ateliers
+            slots_introduction: Parmi les ateliers proposées ci-dessous, sélectionner un créneau horaire
+            slots_limitation: Le ticket utilisé vous donne droit à %max% conférences maximum
