@@ -103,6 +103,7 @@ menu:
         title: Réglages
         events: Evènements
         application: Application
+        event_type: Nature d'animation
     documentation:
         title: Documentation
         admin: Administration
