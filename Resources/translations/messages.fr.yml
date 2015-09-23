@@ -1,3 +1,24 @@
 # Grid
 oxygen_passbook_event_product:
     location: Emplacement
+
+# Nature des animations (event type par défaut de l'application)
+booking_index:
+    button:
+        book: Réserver
+        book_change: Modifier vos réservations
+    workshop_adult:
+        Name: Atelier Adultes
+        short_name_plural: ateliers
+        book: Choisir vos ateliers
+        book_change: Modifier vos ateliers
+    conference:
+        Name: Conférence
+        short_name_plural: conférences
+        book: Choisir vos conférences
+        book_change: Modifier vos conférences
+        form_book_admin:
+            choose_title: Choisir les conférences
+            choose_helper: |
+                Parmi les conférences proposées ci-dessous, sélectionner un créneau horaire.
+

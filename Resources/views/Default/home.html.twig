@@ -9,12 +9,12 @@
 </div>
 {% if open_mode == 'full' %}
 <div class="row-fluid">
-	<div class="span4">
+	<div class="span5">
 		<h2>{{ 'home.cmdpass.title'|trans({}, 'ssn_therapass') }}</h2>
 		<p>{{ 'home.cmdpass.content'|trans({}, 'ssn_therapass') }}</p>
 		<p><a class="btn" href="{{ urlCommand }}">{{ 'home.cmdpass.btn'|trans({}, 'ssn_therapass') }}</a></p>
 	</div><!--/span-->
-	<div class="span8">
+	<div class="span7">
 		<h2>{{ 'home.book.title'|trans({}, 'ssn_therapass') }}</h2>
 		{% if events|length <= 0 %}
 		<div class="alert alert-warning">{{ 'home.book.no_events'|trans({}, 'ssn_therapass') }}</div>
@@ -29,8 +29,7 @@
 		<table class="table table-striped">
 			<thead>
 				<tr>
-					<th>Animations</th>
-					<th>Nombre</th>
+					<th>Réservations possibles :</th>
 					<th></th>
 				</tr>
 			</thead>
@@ -38,7 +37,6 @@
 		{% for event in events %}
 				<tr>
 					<td>{{ event.getName() }}</td>
-					<td>{{ event.getProducts()|length }} {{ ('event_type.'~event.getType()~'.short_name_plural')|trans }}</td>
 					<td><a class="btn" href="{{ path('ssn_therapass_login') }}">{{ 'home.book.btn'|trans({}, 'ssn_therapass') }}</a></td>
 				</tr>
 		{% endfor %}

@@ -40,9 +40,9 @@
 				{% else %}
 				<p><a href="{{ path('ssn_therapass_booking_event', { eventId: event.getId() }) }}" class="btn btn-primary">
 					{% if bookings[event.getId()] is defined %}
-					{{ ('event_type.'~event.getType()~'.book_change')|trans({}) }}
+					{{ ('booking_index.button.book_change')|trans({}) }}
 					{% else %}
-					{{ ('event_type.'~event.getType()~'.book')|trans({}) }}
+					{{ ('booking_index.button.book')|trans({}) }}
 					{% endif %}
 				</a></p>
 				{% endif %}
