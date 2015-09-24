@@ -21,6 +21,10 @@ body > .container-fluid {
 .grid-row-actions li:after { content: ' | ' }
 .grid-row-actions li:last-child:after { content: '' }
 .grid-column-__actions { white-space:nowrap; }
+.grid-column-bookingsClosed { white-space:nowrap; }
+.grid-column-opened { white-space:nowrap; }
+.grid-column-opened .tooltip,
+.grid-column-bookingsClosed .tooltip { white-space: normal; }
 
 /* FORM */
 .input-required { color: red; font-weight: bold; }
