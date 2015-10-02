@@ -1,28 +1,9 @@
 <?php
 namespace SSN\TherapassBundle\Entity;
 
-use Oxygen\PassbookBundle\Entity\BookingPerson as OxygenBookingPerson;
+use SSN\TherapassBundle\Model\BookingPersonModel;
 
-class BookingPerson extends OxygenBookingPerson {
+class BookingPerson extends BookingPersonModel {
 	
-	protected $reference;
-	
-	/**
-	* @param string $reference
-	* @return BookingPerson
-	*/
-	public function setReference($reference)
-	{
-	    $this->reference = $reference;
-	    return $this;
-	}
-	 
-	/**
-	* @return string
-	*/
-	public function getReference()
-	{
-	    return $this->reference;
-	}
-	
+
 }

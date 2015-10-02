@@ -14,3 +14,27 @@ SSN\TherapassBundle\Form\Model\BookingLoginFormModel:
       - NotBlank: { message: 'Information obligatoire', groups: ['default'] }
     barcode:
       - NotBlank: { message: 'Information obligatoire', groups: ['default'] }
+
+SSN\TherapassBundle\Form\Model\BookingLoginFormModel:
+  properties:
+    weezeventTicketId:
+      - NotBlank: { message: 'Information obligatoire', groups: ['default'] }
+    barcode:
+      - NotBlank: { message: 'Information obligatoire', groups: ['default'] }
+
+SSN\TherapassBundle\Model\BookingPersonModel:
+    properties:
+        firstname:
+          - NotBlank: { groups: ['default'] }
+        lastname:
+          - NotBlank: { groups: ['default'] }
+        email:
+          - NotBlank: { groups: ['default'] }
+          - Email: { groups: ['default'] }
+        phone:
+          - Regex:
+              pattern: '/^[0-9]{2} [0-9]{2} [0-9]{2} [0-9]{2} [0-9]{2}$/'
+              match: true
+              message: "Le numéro doit faire 10 chiffres avec un espace tout les deux chiffres : 00 00 00 00 00"
+              groups: ['default']
+
